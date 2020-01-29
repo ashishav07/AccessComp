@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".documentupload"
+    android:id="@+id/LL1"
+    android:visibility="visible">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="66dp"
+        android:background="@drawable/spinnerbackground"
+        android:spinnerMode="dialog" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="150dp"
+        android:visibility="visible"
+        android:id="@+id/rel_lay0">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Date :"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:id="@+id/pf_date"
+        />
+
+        <TextView
+            android:id="@+id/setdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="97dp"
+            android:hint="Select Date"
+            android:textSize="30dp" />
+
+        <ImageButton
+            android:layout_marginBottom="10dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/cal1"
+            android:layout_marginLeft="290dp"
+            android:id="@+id/image_button"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="150dp"
+        android:visibility="gone"
+        android:id="@+id/rel_lay1">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Valid upto :"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:id="@+id/wcp_validupto"
+            />
+
+        <TextView
+            android:id="@+id/validupto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="135dp"
+            android:hint="Select Date"
+            android:textSize="25dp" />
+
+        <ImageButton
+            android:layout_marginBottom="10dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/cal1"
+            android:layout_marginLeft="300dp"
+            android:id="@+id/image_button1"
+            />
+    </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:textColor="#000000"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Select File To Upload"
+        android:textSize="30dp"
+        android:id="@+id/pf_fileupload"
+        android:visibility="visible"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Browse"
+        android:layout_marginLeft="300dp"
+        android:id="@+id/pf_browse"
+        android:visibility="visible"
+        />
+</RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note : If You Have Multiple Documents Use Zip File."
+        android:textColor="#ff0000"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:visibility="visible"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Upload"
+            android:layout_marginLeft="110dp"
+            android:visibility="visible"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Exit"
+            android:layout_marginLeft="210dp"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
