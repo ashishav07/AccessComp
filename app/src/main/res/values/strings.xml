@@ -1,3 +1,38 @@
 <resources>
-    <string name="app_name">AccessComputech</string>
+    <string name="app_name"> Access Computech </string>
+    <string name="username">User Name</string>
+    <string name="pass">Password</string>
+    <string name="regPass">Enter Password(min 6 char)</string>
+    <string name="login"> Login </string>
+    <string name="register"> Register </string>
+    <string name="fname"> First Name </string>
+    <string name="lname"> Last Name </string>
+    <string name="email">Email</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="pass1">Retype Password</string>
+    <string name="nameerror">Enter a valid name</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="mobileerror">Enter a valid mobile</string>
+    <string name="dateerror">Enter a valid date</string>
+    <string name="dob1">Enter Date of Birth (DD/MM/YYYY)</string>
+    <string name="data_inserted">Data Inserted Successfully</string>
+    <string name="registration_success">Registration Successfull</string>
+    <string name="email_in_use">Email Already in use</string>
+    <string name="about_us">About Us</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="post">Post</string>
+    <string name="subject">Subject</string>
+    <string name="description">Description</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="user_image">User Image</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="home">Home</string>
+
 </resources>
