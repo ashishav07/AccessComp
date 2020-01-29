@@ -21,4 +21,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void loggedIn(View view) {
+        Intent in = new Intent(this,MainActivity.class);
+        startActivity(in);
+    }
 }

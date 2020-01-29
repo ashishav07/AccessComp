@@ -81,6 +81,7 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:minWidth="115dp"
                     android:text="@string/login"
+                    android:onClick="loggedIn"
                     android:textColor="#ffffff" />
 
                 <com.google.android.material.button.MaterialButton
