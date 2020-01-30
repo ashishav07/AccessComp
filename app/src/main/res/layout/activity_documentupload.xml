@@ -43,9 +43,9 @@
 
         <ImageButton
             android:layout_marginBottom="10dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/cal3"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:src="@drawable/calendar1"
             android:layout_marginLeft="270dp"
             android:id="@+id/image_button"
             />
@@ -78,9 +78,9 @@
 
         <ImageButton
             android:layout_marginBottom="10dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/cal3"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:src="@drawable/calendar1"
             android:layout_marginLeft="280dp"
             android:id="@+id/image_button1"
             />
