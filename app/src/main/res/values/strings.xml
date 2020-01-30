@@ -11,6 +11,8 @@
     <string name="email">Email</string>
     <string name="worker_code">Worker Code</string>
     <string name="save">Save</string>
+    <string name="contact">Contact Number</string>
+    <string name="get_details">Get Details</string>
     <string name="log_out">Log Out</string>
     <string name="address">Local Address</string>
     <string name="mobile">Mobile Number</string>

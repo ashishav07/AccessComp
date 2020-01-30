@@ -59,7 +59,8 @@
             android:layout_margin="5dp"
             android:background="@drawable/customborder"
             android:text="Document Upload"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="documentUpload"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_worker_details"

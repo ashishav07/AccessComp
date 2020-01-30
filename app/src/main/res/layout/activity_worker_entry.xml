@@ -65,45 +65,130 @@
         </LinearLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorText"
-            app:hintTextAppearance="@style/HintText">
+            android:orientation="vertical"
+            android:layout_marginTop="150dp"
+            android:visibility="visible"
+            android:id="@+id/personal_details"
+            >
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/address"
-                android:inputType="textPostalAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:id="@+id/dob_layout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_weight="0.5"
 
-            <TextView
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select date"
+                    android:textSize="16sp"
+                    android:gravity="center_horizontal"
+                    android:fontFamily="sans-serif-light"
+                    android:background="@drawable/customdateborder"
+                    android:layout_weight="0.5"
+                    android:id="@+id/dob"
+                    />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textSize="20sp"
-                android:fontFamily="sans-serif-light"
-                android:layout_weight="0.5"
+                app:errorEnabled="true"
+                android:layout_below="@id/dob_layout"
+                app:errorTextAppearance="@style/ErrorText"
+                app:hintTextAppearance="@style/HintText">
 
-                />
-            <Spinner
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address"
+                    android:inputType="textPostalAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contact_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner1"
-                android:layout_weight="0.5"
-                />
+                app:errorEnabled="true"
+                android:layout_below="@id/address_layout"
+                app:errorTextAppearance="@style/ErrorText"
+                app:hintTextAppearance="@style/HintText">
 
-        </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contact"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:id="@+id/gender"
+                android:layout_below="@id/contact_layout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_weight="0.5"
+
+                    />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner1"
+                    android:layout_weight="0.5"
+                    />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/religion_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_below="@id/gender"
+                app:errorTextAppearance="@style/ErrorText"
+                app:hintTextAppearance="@style/HintText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/religion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contact"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+<!--
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -199,6 +284,17 @@
                 />
 
         </LinearLayout>
+
+
+-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_worker_details"
             android:layout_width="wrap_content"
@@ -213,6 +309,21 @@
             android:layout_gravity="center_horizontal"
             />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/get_worker_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/get_details"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:minWidth="125dp"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </LinearLayout>
     </LinearLayout>
     </RelativeLayout>
     <RelativeLayout

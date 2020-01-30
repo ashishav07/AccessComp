@@ -24,5 +24,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(in);
     }
 
+    public void documentUpload(View view) {
+        Intent in = new Intent(this,documentupload.class);
+        startActivity(in);
+    }
 
 }
