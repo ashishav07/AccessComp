@@ -24,47 +24,26 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/fname_layout"
+                    android:id="@+id/name_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
-                    android:layout_weight="0.5"
                     app:errorTextAppearance="@style/ErrorText"
                     app:hintTextAppearance="@style/HintText">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/fname"
+                        android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/fname"
+                        android:hint="@string/name"
                         android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/lname_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true"
-                    android:layout_weight="0.5"
-                    app:errorTextAppearance="@style/ErrorText"
-                    app:hintTextAppearance="@style/HintText">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/lname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/lname"
-                        android:inputType="textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/email_layout"
+                android:id="@+id/username_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
@@ -72,62 +51,66 @@
                 app:hintTextAppearance="@style/HintText">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/email"
+                    android:id="@+id/userid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress" />
+                    android:hint="@string/userid" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/email_layout"
+                app:errorEnabled="true"
+                app:hintTextAppearance="@style/HintText"
+                app:errorTextAppearance="@style/ErrorText">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email"
+                android:id="@+id/email"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mobile_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@style/ErrorText"
-                app:hintTextAppearance="@style/HintText">
+                app:hintTextAppearance="@style/HintText"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/mobile"
-                    android:inputType="phone" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                android:id="@+id/pass_layout"
-                app:errorEnabled="true"
-                app:hintTextAppearance="@style/HintText">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/regPass"
-                    android:inputType="textPassword"
-                    android:id="@+id/pass1"
                     />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/otp_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                android:id="@+id/pass2_layout"
                 app:errorEnabled="true"
-                app:hintTextAppearance="@style/HintText">
+                app:hintTextAppearance="@style/HintText"
+                android:visibility="gone"
+                >
+
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/otp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pass1"
-                    android:inputType="textPassword"
-                    android:id="@+id/pass2"
-                    />
+                    android:hint="@string/otp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/reg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/register"
+                android:text="@string/gOtp"
                 android:backgroundTint="@color/colorPrimary"
                 android:textColor="#ffffff"
                 android:layout_marginTop="20dp"
