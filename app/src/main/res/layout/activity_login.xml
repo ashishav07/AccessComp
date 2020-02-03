@@ -8,6 +8,7 @@
     tools:context=".LoginActivity"
     android:orientation="horizontal"
     android:gravity="center">
+
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="fill_parent"
@@ -19,13 +20,13 @@
         android:layout_height="fill_parent"
         android:layout_weight="0.80">
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/container_layout"
-            android:layout_marginBottom="61dp"
-            android:text="Login to your account"
-            android:textSize="24sp" />
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/logo"
+            />
 
         <LinearLayout
             android:id="@+id/container_layout"
@@ -86,7 +87,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                >
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/genotp"
@@ -94,7 +97,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="42dp"
-                    android:layout_marginEnd="8dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:minWidth="115dp"
                     android:text="@string/gOtp"
@@ -106,7 +108,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="42dp"
-                    android:layout_marginEnd="8dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:minWidth="125dp"
                     android:text="@string/register"
