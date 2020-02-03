@@ -8,6 +8,15 @@
     <string name="fname"> First Name </string>
     <string name="lname"> Last Name </string>
     <string name="name"> Name </string>
+    <string name="aadhar"> Aadhar Card No. </string>
+    <string name="remark"> Remark </string>
+    <string name="blocking_type"> Blocking Type </string>
+    <string name="blk_remark"> Block Remark </string>
+
+    <string name="driving"> Driving License No. </string>
+    <string name="mark"> Identity Mark </string>
+    <string name="height"> Height (in cms) </string>
+    <string name="religion"> Religion </string>
     <string name="email">Email</string>
     <string name="worker_code">Worker Code</string>
     <string name="save">Save</string>
@@ -61,6 +70,32 @@
 
     <string-array name="skill">
 
+    </string-array>
+
+    <string-array name="domicile">
+
+    </string-array>
+
+    <string-array name="nationality">
+
+    </string-array>
+
+    <string-array name="police">
+
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="vehicle">
+
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="blocked">
+
+        <item>Yes</item>
+        <item>No</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
