@@ -10,9 +10,14 @@
     >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.8"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.10">
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.80"
         >
 
         <LinearLayout
@@ -164,6 +169,11 @@
             </LinearLayout>
 
         </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.10">
     </RelativeLayout>
 
 </LinearLayout>
