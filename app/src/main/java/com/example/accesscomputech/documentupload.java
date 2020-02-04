@@ -3,11 +3,14 @@ package com.example.accesscomputech;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,45 +21,57 @@ import java.util.List;
 
 public class documentupload extends AppCompatActivity{
     /*Form type spinner*/
-    Spinner Form_spinner,Month_spinner,Year_Spinner;
-    RelativeLayout pf_for_month,pf_for_year,wcp_for_month,wcp_for_year;
-    TextView validupto,date;
+    Spinner Form_spinner;
+    RelativeLayout wcp_for_month,wcp_for_year;
+    TextView mDisplayDate,wcp,pf;
+    DatePickerDialog.OnDateSetListener mDateSetListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentupload);
         Form_spinner=(Spinner)findViewById(R.id.Form_spinner);
-        Month_spinner=(Spinner)findViewById(R.id.pf_Month_spinner);
-        Year_Spinner=(Spinner)findViewById(R.id.pf_Year_spinner);
+        pf=(TextView)findViewById(R.id.pf);
+        wcp=(TextView)findViewById(R.id.wcp);
 
         List<String> form_list=new ArrayList<String>();
         form_list.add("PF");
         form_list.add("WCP Document");
+        mDisplayDate = (TextView) findViewById(R.id.date);
+        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal= Calendar.getInstance();
 
-        List<String> Month_list=new ArrayList<String>();
-        Month_list.add("January");
-        Month_list.add("February");
-        Month_list.add("March");
-        Month_list.add("April");
-        Month_list.add("May");
-        Month_list.add("June");
-        Month_list.add("July");
-        Month_list.add("August");
-        Month_list.add("September");
-        Month_list.add("October");
-        Month_list.add("November");
-        Month_list.add("December");
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int month = cal.get(Calendar.MONTH);
+                int year = cal.get(Calendar.YEAR);
 
-        List<String> Year_list=new ArrayList<>();
-        int s=Calendar.getInstance().get(Calendar.YEAR);
-        String y=Integer.toString(s);
-        Year_list.add(y);
-        for(int i=0;i<7;i++){
-            s++;
-            y=Integer.toString(s);
-            Year_list.add(y);
-        }
+
+
+                DatePickerDialog dialog = new DatePickerDialog(documentupload.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,day,month,year);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int day, int month, int year) {
+
+                month = month+1;
+                String date = year +"/"+ month +"/"+ day;
+                mDisplayDate.setText(date);
+
+
+            }
+        };
+
+
 
         ArrayAdapter<String> FormAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,form_list);
         FormAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -65,6 +80,14 @@ public class documentupload extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Form_spinner.setSelection(i);
+                if(i==0){
+                    pf.setVisibility(View.VISIBLE);
+                    wcp.setVisibility(View.GONE);
+                }
+                if(i==1){
+                    pf.setVisibility(View.GONE);
+                    wcp.setVisibility(View.VISIBLE);
+                }
 
             }
 
@@ -73,37 +96,6 @@ public class documentupload extends AppCompatActivity{
 
             }
         });
-
-        ArrayAdapter<String> MonthAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Month_list);
-        MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Month_spinner.setAdapter(MonthAdapter);
-        Month_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int k, long l) {
-                Month_spinner.setSelection(k);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        ArrayAdapter<String> YearAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Year_list);
-        YearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Year_Spinner.setAdapter(YearAdapter);
-        Year_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-                Year_Spinner.setSelection(j);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
 
     }
 }
