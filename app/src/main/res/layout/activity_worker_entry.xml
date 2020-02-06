@@ -231,6 +231,8 @@
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+
+               <!--
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -257,13 +259,16 @@
 
                 </LinearLayout>
 
+                -->
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:id="@+id/blocked_layout"
-                    android:layout_below="@id/vehicle_layout">
+                    android:layout_below="@id/remark_layout">
 
                     <TextView
                         android:layout_width="match_parent"
