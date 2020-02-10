@@ -1,13 +1,22 @@
 package com.example.accesscomputech;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,9 +26,21 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class documentupload extends AppCompatActivity{
     /*Form type spinner*/
@@ -37,7 +58,7 @@ public class documentupload extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentupload);
-        upload = findViewById(R.id.upload);
+
         Form_spinner=(Spinner)findViewById(R.id.Form_spinner);
         pf=(TextView)findViewById(R.id.pf);
         wcp=(TextView)findViewById(R.id.wcp);
@@ -78,7 +99,14 @@ public class documentupload extends AppCompatActivity{
             }
         };
 
-
+        upload = findViewById(R.id.upload);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+                return;
+            }
+        }
+        enable_button();
 
         ArrayAdapter<String> FormAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,form_list);
         FormAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -105,11 +133,92 @@ public class documentupload extends AppCompatActivity{
         });
 
     }
-    public class SoapCall extends AsyncTask<String,Object,String>{
 
-        @Override
-        protected String doInBackground(String... strings) {
-            return null;
+    private void enable_button() {
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialFilePicker()
+                        .withActivity(documentupload.this)
+                        .withRequestCode(10)
+                        .start();
+
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 100 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+            enable_button();
+        }else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+            }
         }
     }
+
+    ProgressDialog progress;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10 && resultCode == RESULT_OK) {
+            progress = new ProgressDialog(documentupload.this);
+            progress.setTitle("Uploading");
+            progress.setMessage("Please wait...");
+            progress.show();
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    File f = new File(data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH));
+                    String content_type = getMimeType(f.getPath());
+
+                    String file_path = f.getAbsolutePath();
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody file_body = RequestBody.create(MediaType.parse(content_type), f);
+
+                    RequestBody request_body = new MultipartBody.Builder()
+                            .setType(MultipartBody.FORM)
+                            .addFormDataPart("type", content_type)
+                            .addFormDataPart("uploaded_file", file_path.substring(file_path.lastIndexOf("/") + 1), file_body)
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .url("http://103.231.5.35:83/OPALSEVC/OPAL_WEB_CALL.asmx?op=DOC_UPLOAD")
+                            .post(request_body)
+                            .build();
+
+                    try {
+                        Response response = client.newCall(request).execute();
+
+                        if (!response.isSuccessful()) {
+                            throw new IOException("Error : " + response);
+                        }
+
+                        progress.dismiss();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            });
+
+            t.start();
+
+
+        }
+    }
+
+    private String getMimeType(String path) {
+
+        String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+    }
 }
+

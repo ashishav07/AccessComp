@@ -319,7 +319,7 @@ public class WorkerEntry extends AppCompatActivity {
         /**
          * vehicle allowed spinner
          */
-
+/**
         Spinner vehicleSpinner = (Spinner) findViewById(R.id.vehicle_spinner);
 
         ArrayAdapter<String> vehicleAdapter = new ArrayAdapter<String>(WorkerEntry.this,android.R.layout.simple_list_item_1,
@@ -327,7 +327,7 @@ public class WorkerEntry extends AppCompatActivity {
 
         vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleSpinner.setAdapter(vehicleAdapter);
-
+**/
 
         /**
          * Blocked spinner
