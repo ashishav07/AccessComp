@@ -117,7 +117,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"
                     android:text="Browse"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:id="@+id/upload"
+                    />
 
             </LinearLayout>
 

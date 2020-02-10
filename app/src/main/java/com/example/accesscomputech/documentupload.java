@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -25,12 +27,17 @@ public class documentupload extends AppCompatActivity{
     RelativeLayout wcp_for_month,wcp_for_year;
     TextView mDisplayDate,wcp,pf;
     DatePickerDialog.OnDateSetListener mDateSetListener;
-
+    public static final String NAMESPACE = "http://127.0.0.1/opalsevc/";
+    public static String Method_Name = "GET_PAGERIGHTS(";
+    private static String webSrvcLink = "http://103.231.5.35:85/opalsevc/OPAL_WEB_CALL.asmx";
+    private static String webSrvcSoapAction = "http://127.0.0.1/opalsevc/";
+    Button upload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentupload);
+        upload = findViewById(R.id.upload);
         Form_spinner=(Spinner)findViewById(R.id.Form_spinner);
         pf=(TextView)findViewById(R.id.pf);
         wcp=(TextView)findViewById(R.id.wcp);
@@ -97,5 +104,12 @@ public class documentupload extends AppCompatActivity{
             }
         });
 
+    }
+    public class SoapCall extends AsyncTask<String,Object,String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return null;
+        }
     }
 }
