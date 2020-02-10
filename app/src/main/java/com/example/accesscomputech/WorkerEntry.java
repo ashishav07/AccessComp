@@ -116,8 +116,6 @@ public class WorkerEntry extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int year = cal.get(Calendar.YEAR);
 
-
-
                 DatePickerDialog dialog = new DatePickerDialog(WorkerEntry.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         drivingListener,day,month,year);
 
