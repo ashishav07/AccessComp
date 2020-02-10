@@ -45,6 +45,7 @@
             android:id="@+id/epn"
             android:layout_below="@+id/worker_entry"
             android:padding="30dp"
+            android:onClick="EPN"
             android:layout_margin="5dp"
             android:text="EPN Renewal"
             android:background="@drawable/customborder"

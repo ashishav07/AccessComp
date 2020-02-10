@@ -10,10 +10,17 @@
     >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.8"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.10">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.80"
         >
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,6 +54,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/date_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -55,42 +63,36 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="For Month : "
-                    android:textSize="20sp"
+                    android:layout_weight="0.5"
                     android:fontFamily="sans-serif-light"
-                    android:layout_weight="0.5"
+                    android:text="Select date : "
+                    android:textSize="20sp"
+                    android:visibility="visible"
+                    android:id="@+id/pf"
 
                     />
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pf_Month_spinner"
-                    android:layout_weight="0.5"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="For year : "
-                    android:textSize="20sp"
-                    android:fontFamily="sans-serif-light"
                     android:layout_weight="0.5"
-
+                    android:fontFamily="sans-serif-light"
+                    android:text="Valid upto : "
+                    android:visibility="gone"
+                    android:textSize="20sp"
+                    android:id="@+id/wcp"
                     />
-                <Spinner
+
+                <TextView
+                    android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pf_Year_spinner"
                     android:layout_weight="0.5"
-                    />
+                    android:background="@drawable/customdateborder"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center_horizontal"
+                    android:hint="Select date"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -164,6 +166,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.10">
+    </RelativeLayout>
 </LinearLayout>
