@@ -166,7 +166,7 @@ public class documentupload extends AppCompatActivity{
         if (requestCode == 10 && resultCode == RESULT_OK) {
             progress = new ProgressDialog(documentupload.this);
             progress.setTitle("Uploading");
-            progress.setMessage("Please wait...");
+            progress.setMessage("Please Wait ...");
             progress.show();
 
             Thread t = new Thread(new Runnable() {
@@ -177,33 +177,6 @@ public class documentupload extends AppCompatActivity{
                     String content_type = getMimeType(f.getPath());
 
                     String file_path = f.getAbsolutePath();
-                    OkHttpClient client = new OkHttpClient();
-                    RequestBody file_body = RequestBody.create(MediaType.parse(content_type), f);
-
-                    RequestBody request_body = new MultipartBody.Builder()
-                            .setType(MultipartBody.FORM)
-                            .addFormDataPart("type", content_type)
-                            .addFormDataPart("uploaded_file", file_path.substring(file_path.lastIndexOf("/") + 1), file_body)
-                            .build();
-
-                    Request request = new Request.Builder()
-                            .url("http://103.231.5.35:83/OPALSEVC/OPAL_WEB_CALL.asmx?op=DOC_UPLOAD")
-                            .post(request_body)
-                            .build();
-
-                    try {
-                        Response response = client.newCall(request).execute();
-
-                        if (!response.isSuccessful()) {
-                            throw new IOException("Error : " + response);
-                        }
-
-                        progress.dismiss();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
 
                 }
             });
@@ -221,4 +194,3 @@ public class documentupload extends AppCompatActivity{
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
 }
-
