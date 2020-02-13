@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -44,6 +45,8 @@ import okhttp3.OkHttpClient;
 public class documentupload extends AppCompatActivity{
     /*Form type spinner*/
     Spinner Form_spinner;
+
+    ProgressDialog progress;
     RelativeLayout wcp_for_month,wcp_for_year;
     TextView mDisplayDate,wcp,pf;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -57,7 +60,7 @@ public class documentupload extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentupload);
-
+        progress = new ProgressDialog(documentupload.this);
         Form_spinner=(Spinner)findViewById(R.id.Form_spinner);
         pf=(TextView)findViewById(R.id.pf);
         wcp=(TextView)findViewById(R.id.wcp);
@@ -74,7 +77,6 @@ public class documentupload extends AppCompatActivity{
                 int day = cal.get(Calendar.DAY_OF_MONTH);
                 int month = cal.get(Calendar.MONTH);
                 int year = cal.get(Calendar.YEAR);
-
 
 
                 DatePickerDialog dialog = new DatePickerDialog(documentupload.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -131,15 +133,22 @@ public class documentupload extends AppCompatActivity{
 
     }
     private class SoapCall extends AsyncTask<String,Object,String>{
-        public SoapCall(){
-            super();
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progress.show();
         }
+
         @Override
         protected String doInBackground(String... strings) {
-            String responseString = null;
+            String responseString = "initialString";
+
             SoapObject request = new SoapObject(NAMESPACE, Method_Name);
-//            request.addProperty("formth",);
+            request.addProperty("formth","try");
+
+
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
             envelope.dotNet = true;
             envelope.implicitTypes = true;
@@ -190,6 +199,12 @@ public class documentupload extends AppCompatActivity{
             Log.i("FinalResponse",responseString);
             return responseString;
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progress.cancel();
+        }
     }
     private void enable_button() {
         upload.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +214,7 @@ public class documentupload extends AppCompatActivity{
                         .withActivity(documentupload.this)
                         .withRequestCode(10)
                         .start();
-
+                new SoapCall().execute("abc","abc","abc");
             }
         });
     }
@@ -215,16 +230,12 @@ public class documentupload extends AppCompatActivity{
         }
     }
 
-    ProgressDialog progress;
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 10 && resultCode == RESULT_OK) {
-            progress = new ProgressDialog(documentupload.this);
-            progress.setTitle("Uploading");
-            progress.setMessage("Please wait...");
-            progress.show();
+
 
             Thread t = new Thread(new Runnable() {
                 @Override
@@ -234,7 +245,7 @@ public class documentupload extends AppCompatActivity{
 
                     String file_path = f.getAbsolutePath();
                     OkHttpClient client = new OkHttpClient();
-//                    new SoapCall();
+
                 }
             });
             t.start();
