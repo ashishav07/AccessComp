@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     Button register,gOtp;
     TextView userid;
     public static final String NAMESPACE = "http://127.0.0.1/opalsevc/";
-    public static String Method_Name = "GET_PAGERIGHTS(";
+    public static String Method_Name = "DOC_UPLOAD(";
     private static String webSrvcLink = "http://103.231.5.35:85/opalsevc/OPAL_WEB_CALL.asmx";
     private static String webSrvcSoapAction = "http://127.0.0.1/opalsevc/";
     String abc = null;

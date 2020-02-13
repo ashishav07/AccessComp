@@ -1,10 +1,5 @@
 package com.example.accesscomputech;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -15,9 +10,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,8 +21,17 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,12 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class documentupload extends AppCompatActivity{
     /*Form type spinner*/
@@ -49,7 +48,7 @@ public class documentupload extends AppCompatActivity{
     TextView mDisplayDate,wcp,pf;
     DatePickerDialog.OnDateSetListener mDateSetListener;
     public static final String NAMESPACE = "http://127.0.0.1/opalsevc/";
-    public static String Method_Name = "GET_PAGERIGHTS(";
+    public static String Method_Name = "DOC_UPLOAD";
     private static String webSrvcLink = "http://103.231.5.35:85/opalsevc/OPAL_WEB_CALL.asmx";
     private static String webSrvcSoapAction = "http://127.0.0.1/opalsevc/";
     Button upload;
@@ -94,8 +93,6 @@ public class documentupload extends AppCompatActivity{
                 month = month+1;
                 String date = year +"/"+ month +"/"+ day;
                 mDisplayDate.setText(date);
-
-
             }
         };
 
@@ -133,7 +130,67 @@ public class documentupload extends AppCompatActivity{
         });
 
     }
+    private class SoapCall extends AsyncTask<String,Object,String>{
+        public SoapCall(){
+            super();
 
+        }
+        @Override
+        protected String doInBackground(String... strings) {
+            String responseString = null;
+            SoapObject request = new SoapObject(NAMESPACE, Method_Name);
+//            request.addProperty("formth",);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
+            envelope.dotNet = true;
+            envelope.implicitTypes = true;
+            envelope.setAddAdornments(false);
+            envelope.setOutputSoapObject(request);
+
+            HttpTransportSE androidHttpTransport;        // ON it for local server
+            try {
+                //-----------for http without TLS------------//
+                androidHttpTransport = new HttpTransportSE(webSrvcLink, 20000);
+                //------------------------------------------//
+
+                //------------------------for https  with TLS------------------------------//
+//                Host = LoginURL.toLowerCase().replace("https://", "").replace("http://", "");
+//                ServiceName = Host.substring(Host.indexOf("/"));
+//                Host = Host.substring(0, Host.indexOf("/"));
+//                androidHttpTransport = new HttpsTls12TransportSE(Host, 443, ServiceName, 20000);
+                //-------------------------------------------------------------------------//
+                androidHttpTransport.debug = true;
+                androidHttpTransport.call(webSrvcSoapAction, envelope);
+                SoapObject result = (SoapObject) envelope.bodyIn;
+                if (result != null) {
+                    responseString = result.getProperty(0).toString();
+                } else {
+                    responseString = "";
+                }
+//                    Connected = true;
+            } catch (IOException e) {
+//                    Connected = false;
+                String er = e.getMessage();
+//                    if (er != null) {
+//                        Error = er;
+//                    }
+            }
+//                HttpsTls12TransportSE androidHttpTransport;
+//                androidHttpTransport = new HttpsTls12TransportSE(host, 443, serviceName, 60000);
+//                androidHttpTransport.debug = true;
+//                androidHttpTransport.call(webSrvcSoapAction, envelope);
+//                SoapObject result = (SoapObject) envelope.bodyIn;
+//                if (result != null) {
+//                    responseString = result.getProperty(0).toString();
+//                } else {
+//                    responseString = "";
+//                }
+            catch(Exception ex) {
+                responseString = ex.getMessage();
+            }
+            Log.i("FinalResponse",responseString);
+            return responseString;
+        }
+    }
     private void enable_button() {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,24 +223,21 @@ public class documentupload extends AppCompatActivity{
         if (requestCode == 10 && resultCode == RESULT_OK) {
             progress = new ProgressDialog(documentupload.this);
             progress.setTitle("Uploading");
-            progress.setMessage("Please Wait ...");
+            progress.setMessage("Please wait...");
             progress.show();
 
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
                     File f = new File(data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH));
                     String content_type = getMimeType(f.getPath());
 
                     String file_path = f.getAbsolutePath();
-
+                    OkHttpClient client = new OkHttpClient();
+//                    new SoapCall();
                 }
             });
-
             t.start();
-
-
         }
     }
 
@@ -194,3 +248,4 @@ public class documentupload extends AppCompatActivity{
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
 }
+
