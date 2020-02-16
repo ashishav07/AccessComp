@@ -6,7 +6,9 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +17,12 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
+import java.io.IOException;
 import java.util.Calendar;
 
 public class WorkerEntry extends AppCompatActivity {
@@ -35,6 +43,10 @@ public class WorkerEntry extends AppCompatActivity {
 
     TextView personal,work;
     ScrollView personalDetails, workDetails;
+    public static final String NAMESPACE = "http://127.0.0.1/opalsevc/";
+    public static String Method_Name = "WRKR_ENTRY";
+    private static String webSrvcLink = "http://103.231.5.35:85/opalsevc/OPAL_WEB_CALL.asmx";
+    private static String webSrvcSoapAction = "http://127.0.0.1/opalsevc/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -340,7 +352,63 @@ public class WorkerEntry extends AppCompatActivity {
 
         blockedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         blockedSpinner.setAdapter(blockedAdapter);
+    }
+    private class SoapCall extends AsyncTask<Void,Void,String>{
 
+        @Override
+        protected String doInBackground(Void... voids) {
+            String responseString = "initialString";
 
+            SoapObject request = new SoapObject(NAMESPACE, Method_Name);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
+            envelope.dotNet = true;
+            envelope.implicitTypes = true;
+            envelope.setAddAdornments(false);
+            envelope.setOutputSoapObject(request);
+
+            HttpTransportSE androidHttpTransport;        // ON it for local server
+            try {
+                //-----------for http without TLS------------//
+                androidHttpTransport = new HttpTransportSE(webSrvcLink, 20000);
+                //------------------------------------------//
+
+                //------------------------for https  with TLS------------------------------//
+//                Host = LoginURL.toLowerCase().replace("https://", "").replace("http://", "");
+//                ServiceName = Host.substring(Host.indexOf("/"));
+//                Host = Host.substring(0, Host.indexOf("/"));
+//                androidHttpTransport = new HttpsTls12TransportSE(Host, 443, ServiceName, 20000);
+                //-------------------------------------------------------------------------//
+                androidHttpTransport.debug = true;
+                androidHttpTransport.call(webSrvcSoapAction, envelope);
+                SoapObject result = (SoapObject) envelope.bodyIn;
+                if (result != null) {
+                    responseString = result.getProperty(0).toString();
+                } else {
+                    responseString = "";
+                }
+//                    Connected = true;
+            } catch (IOException e) {
+//                    Connected = false;
+                String er = e.getMessage();
+//                    if (er != null) {
+//                        Error = er;
+//                    }
+            }
+//                HttpsTls12TransportSE androidHttpTransport;
+//                androidHttpTransport = new HttpsTls12TransportSE(host, 443, serviceName, 60000);
+//                androidHttpTransport.debug = true;
+//                androidHttpTransport.call(webSrvcSoapAction, envelope);
+//                SoapObject result = (SoapObject) envelope.bodyIn;
+//                if (result != null) {
+//                    responseString = result.getProperty(0).toString();
+//                } else {
+//                    responseString = "";
+//                }
+            catch(Exception ex) {
+                responseString = ex.getMessage();
+            }
+            Log.i("FinalResponse",responseString);
+            return responseString;
+        }
     }
 }
