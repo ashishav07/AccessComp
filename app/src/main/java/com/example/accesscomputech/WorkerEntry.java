@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
@@ -360,6 +361,179 @@ public class WorkerEntry extends AppCompatActivity {
             String responseString = "initialString";
 
             SoapObject request = new SoapObject(NAMESPACE, Method_Name);
+
+            PropertyInfo info = new PropertyInfo();
+            info.setName("WRKR_CODE");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info);
+
+            PropertyInfo info1 = new PropertyInfo();
+            info1.setName("CONT_CODE");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info1);
+
+            PropertyInfo info2 = new PropertyInfo();
+            info2.setName("LOC_CODE");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info2);
+
+            PropertyInfo info3 = new PropertyInfo();
+            info.setName("FIRSTNAME");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info3);
+
+            PropertyInfo info4 = new PropertyInfo();
+            info1.setName("MIDDLENAME");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info4);
+
+            PropertyInfo info5 = new PropertyInfo();
+            info2.setName("LASTNAME");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info5);
+
+            PropertyInfo info6 = new PropertyInfo();
+            info.setName("DOB");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info6);
+
+            PropertyInfo info7 = new PropertyInfo();
+            info1.setName("LOCAL_ADDR");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info7);
+
+            PropertyInfo info8 = new PropertyInfo();
+            info2.setName("JOIN_DATE");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info8);
+
+            PropertyInfo info9 = new PropertyInfo();
+            info.setName("CONTACT_NO");
+            info.setValue(null);
+            info.setType(Integer.class);
+            request.addProperty(info9);
+
+            PropertyInfo info10 = new PropertyInfo();
+            info1.setName("SKILL_TYPE");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info10);
+
+            PropertyInfo info11 = new PropertyInfo();
+            info2.setName("GENDER");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info11);
+
+            PropertyInfo info12 = new PropertyInfo();
+            info.setName("QUALI");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info12);
+
+            PropertyInfo info13 = new PropertyInfo();
+            info1.setName("WRKR_TYPE");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info13);
+
+            PropertyInfo info14 = new PropertyInfo();
+            info2.setName("RELIGION");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info14);
+
+            PropertyInfo info15 = new PropertyInfo();
+            info.setName("BLD_GP");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info15);
+
+            PropertyInfo info16 = new PropertyInfo();
+            info1.setName("DOMICILE");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info16);
+
+            PropertyInfo info17 = new PropertyInfo();
+            info2.setName("HEIGHT");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info17);
+
+            PropertyInfo info18 = new PropertyInfo();
+            info.setName("ID_MARK");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info18);
+
+            PropertyInfo info19 = new PropertyInfo();
+            info1.setName("POLICE_VER");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info19);
+
+            PropertyInfo info20 = new PropertyInfo();
+            info.setName("SAFETY_TR_FROM");
+            info.setValue(null);
+            info.setType(Integer.class);
+            request.addProperty(info20);
+
+            PropertyInfo info21 = new PropertyInfo();
+            info1.setName("SAFETY_TR_TO");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info21);
+
+            PropertyInfo info22 = new PropertyInfo();
+            info2.setName("SAFETY_REMARK");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info22);
+
+            PropertyInfo info23 = new PropertyInfo();
+            info.setName("VH_FLAG");
+            info.setValue(null);
+            info.setType(String.class);
+            request.addProperty(info23);
+
+            PropertyInfo info24 = new PropertyInfo();
+            info1.setName("DRV_LIC_NO");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info24);
+
+            PropertyInfo info25 = new PropertyInfo();
+            info.setName("DRV_LIC_VAL");
+            info.setValue(null);
+            info.setType(Integer.class);
+            request.addProperty(info25);
+
+            PropertyInfo info26 = new PropertyInfo();
+            info1.setName("AADHAR");
+            info1.setValue(null);
+            info1.setType(String.class);
+            request.addProperty(info26);
+
+            PropertyInfo info27 = new PropertyInfo();
+            info2.setName("COUNTRYNAME");
+            info2.setValue(null);
+            info2.setType(String.class);
+            request.addProperty(info27);
+
+
+
+
+
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
             envelope.dotNet = true;
             envelope.implicitTypes = true;
