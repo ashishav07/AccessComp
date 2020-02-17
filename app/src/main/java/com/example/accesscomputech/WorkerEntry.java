@@ -1,24 +1,20 @@
 package com.example.accesscomputech;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -556,8 +552,11 @@ public class WorkerEntry extends AppCompatActivity {
             envelope.setAddAdornments(false);
             envelope.setOutputSoapObject(request);
 
-            HttpTransportSE androidHttpTransport = new HttpTransportSE(webSrvcLink, 20000);        // ON it for local server
+            HttpTransportSE androidHttpTransport;
             try {
+                androidHttpTransport = new HttpTransportSE(webSrvcLink, 20000);
+                // ON it for local server
+
                 //-----------for http without TLS------------//
                 //------------------------------------------//
 
@@ -596,9 +595,8 @@ public class WorkerEntry extends AppCompatActivity {
 //                }
             catch(Exception ex) {
                 responseString = ex.getMessage();
-                Log.i("FinalResponse",responseString);
+                Log.i("FinalResponse", String.valueOf(ex));
             }
-            Log.i("FinalResponse",responseString);
             return responseString;
         }
 
