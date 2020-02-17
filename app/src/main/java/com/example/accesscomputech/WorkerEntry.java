@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -46,14 +49,13 @@ public class WorkerEntry extends AppCompatActivity {
     ScrollView personalDetails, workDetails;
     public static final String NAMESPACE = "http://127.0.0.1/opalsevc/";
     public static String Method_Name = "WRKR_ENTRY";
-    private static String webSrvcLink = "http://103.231.5.35:85/opalsevc/OPAL_WEB_CALL.asmx";
+    private static String webSrvcLink = "http://103.231.5.35:83/opalsevc/OPAL_WEB_CALL.asmx";
     private static String webSrvcSoapAction = "http://127.0.0.1/opalsevc/";
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worker_entry);
-
         personal= (TextView) findViewById(R.id.personal_details_button);
         work= (TextView) findViewById(R.id.work_details_button);
 
@@ -68,7 +70,12 @@ public class WorkerEntry extends AppCompatActivity {
 
             }
         });
-
+        findViewById(R.id.save_worker_details).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new SoapCall().execute();
+            }
+        });
         work.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -354,7 +361,15 @@ public class WorkerEntry extends AppCompatActivity {
         blockedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         blockedSpinner.setAdapter(blockedAdapter);
     }
+
     private class SoapCall extends AsyncTask<Void,Void,String>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(WorkerEntry.this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -364,31 +379,31 @@ public class WorkerEntry extends AppCompatActivity {
 
             PropertyInfo info = new PropertyInfo();
             info.setName("WRKR_CODE");
-            info.setValue(null);
+            info.setValue("abc");
             info.setType(String.class);
             request.addProperty(info);
 
             PropertyInfo info1 = new PropertyInfo();
             info1.setName("CONT_CODE");
-            info1.setValue(null);
+            info1.setValue("abc");
             info1.setType(String.class);
             request.addProperty(info1);
 
             PropertyInfo info2 = new PropertyInfo();
             info2.setName("LOC_CODE");
-            info2.setValue(null);
+            info2.setValue("abc");
             info2.setType(String.class);
             request.addProperty(info2);
 
             PropertyInfo info3 = new PropertyInfo();
             info3.setName("FIRSTNAME");
-            info3.setValue(null);
+            info3.setValue("abc");
             info3.setType(String.class);
             request.addProperty(info3);
 
             PropertyInfo info4 = new PropertyInfo();
             info4.setName("MIDDLENAME");
-            info4.setValue(null);
+            info4.setValue("abc");
             info4.setType(String.class);
             request.addProperty(info4);
 
@@ -400,133 +415,138 @@ public class WorkerEntry extends AppCompatActivity {
 
             PropertyInfo info6 = new PropertyInfo();
             info6.setName("DOB");
-            info6.setValue(null);
+            info6.setValue("abc");
             info6.setType(String.class);
             request.addProperty(info6);
 
             PropertyInfo info7 = new PropertyInfo();
             info7.setName("LOCAL_ADDR");
-            info7.setValue(null);
+            info7.setValue("abc");
             info7.setType(String.class);
             request.addProperty(info7);
 
             PropertyInfo info8 = new PropertyInfo();
             info8.setName("JOIN_DATE");
-            info8.setValue(null);
+            info8.setValue("abc");
             info8.setType(String.class);
             request.addProperty(info8);
 
             PropertyInfo info9 = new PropertyInfo();
             info9.setName("CONTACT_NO");
-            info9.setValue(null);
-            info9.setType(Integer.class);
+            info9.setValue("abc");
+            info9.setType(String.class);
             request.addProperty(info9);
 
             PropertyInfo info10 = new PropertyInfo();
             info10.setName("SKILL_TYPE");
-            info10.setValue(null);
+            info10.setValue("abc");
             info10.setType(String.class);
             request.addProperty(info10);
 
             PropertyInfo info11 = new PropertyInfo();
             info11.setName("GENDER");
-            info11.setValue(null);
+            info11.setValue("abc");
             info11.setType(String.class);
             request.addProperty(info11);
 
             PropertyInfo info12 = new PropertyInfo();
             info12.setName("QUALI");
-            info12.setValue(null);
+            info12.setValue("abc");
             info12.setType(String.class);
             request.addProperty(info12);
 
             PropertyInfo info13 = new PropertyInfo();
             info13.setName("WRKR_TYPE");
-            info13.setValue(null);
+            info13.setValue("abc");
             info13.setType(String.class);
             request.addProperty(info13);
 
             PropertyInfo info14 = new PropertyInfo();
             info14.setName("RELIGION");
-            info14.setValue(null);
+            info14.setValue("abc");
             info14.setType(String.class);
             request.addProperty(info14);
 
             PropertyInfo info15 = new PropertyInfo();
             info15.setName("BLD_GP");
-            info15.setValue(null);
+            info15.setValue("abc");
             info15.setType(String.class);
             request.addProperty(info15);
 
             PropertyInfo info16 = new PropertyInfo();
             info16.setName("DOMICILE");
-            info16.setValue(null);
+            info16.setValue("abc");
             info16.setType(String.class);
             request.addProperty(info16);
 
             PropertyInfo info17 = new PropertyInfo();
             info17.setName("HEIGHT");
-            info17.setValue(null);
+            info17.setValue("abc");
             info17.setType(String.class);
             request.addProperty(info17);
 
             PropertyInfo info18 = new PropertyInfo();
             info18.setName("ID_MARK");
-            info18.setValue(null);
+            info18.setValue("abc");
             info18.setType(String.class);
             request.addProperty(info18);
 
             PropertyInfo info19 = new PropertyInfo();
             info19.setName("POLICE_VER");
-            info19.setValue(null);
+            info19.setValue("abc");
             info19.setType(String.class);
             request.addProperty(info19);
 
             PropertyInfo info20 = new PropertyInfo();
             info20.setName("SAFETY_TR_FROM");
-            info20.setValue(null);
-            info20.setType(Integer.class);
+            info20.setValue("abc");
+            info20.setType(String.class);
             request.addProperty(info20);
 
             PropertyInfo info21 = new PropertyInfo();
             info21.setName("SAFETY_TR_TO");
-            info21.setValue(null);
+            info21.setValue("abc");
             info21.setType(String.class);
             request.addProperty(info21);
 
             PropertyInfo info22 = new PropertyInfo();
             info22.setName("SAFETY_REMARK");
-            info22.setValue(null);
+            info22.setValue("abc");
             info22.setType(String.class);
             request.addProperty(info22);
 
             PropertyInfo info23 = new PropertyInfo();
             info23.setName("VH_FLAG");
-            info23.setValue(null);
+            info23.setValue("abc");
             info23.setType(String.class);
             request.addProperty(info23);
 
             PropertyInfo info24 = new PropertyInfo();
             info24.setName("DRV_LIC_NO");
-            info24.setValue(null);
+            info24.setValue("abc");
             info24.setType(String.class);
             request.addProperty(info24);
 
             PropertyInfo info25 = new PropertyInfo();
             info25.setName("DRV_LIC_VAL");
-            info25.setValue(null);
-            info25.setType(Integer.class);
+            info25.setValue("abc");
+            info25.setType(String.class);
             request.addProperty(info25);
 
             PropertyInfo info26 = new PropertyInfo();
             info26.setName("AADHAR");
-            info26.setValue(null);
+            info26.setValue("abc");
             info26.setType(String.class);
             request.addProperty(info26);
 
             PropertyInfo info27 = new PropertyInfo();
             info27.setName("COUNTRYNAME");
-            info27.setValue(null);
+            info27.setValue("abc");
+            info27.setType(String.class);
+            request.addProperty(info27);
+
+            info27.setName("DEVICE_ID");
+            info27.setValue("");
             info27.setType(String.class);
             request.addProperty(info27);
 
@@ -536,10 +556,9 @@ public class WorkerEntry extends AppCompatActivity {
             envelope.setAddAdornments(false);
             envelope.setOutputSoapObject(request);
 
-            HttpTransportSE androidHttpTransport;        // ON it for local server
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(webSrvcLink, 20000);        // ON it for local server
             try {
                 //-----------for http without TLS------------//
-                androidHttpTransport = new HttpTransportSE(webSrvcLink, 20000);
                 //------------------------------------------//
 
                 //------------------------for https  with TLS------------------------------//
@@ -560,6 +579,7 @@ public class WorkerEntry extends AppCompatActivity {
             } catch (IOException e) {
 //                    Connected = false;
                 String er = e.getMessage();
+                Log.i("ErrorFinal",er);
 //                    if (er != null) {
 //                        Error = er;
 //                    }
@@ -576,9 +596,17 @@ public class WorkerEntry extends AppCompatActivity {
 //                }
             catch(Exception ex) {
                 responseString = ex.getMessage();
+                Log.i("FinalResponse",responseString);
             }
             Log.i("FinalResponse",responseString);
             return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Log.i("FinalPostExecute",s);
+            progressDialog.dismiss();
         }
     }
 }
