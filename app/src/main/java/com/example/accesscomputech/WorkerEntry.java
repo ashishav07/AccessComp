@@ -381,158 +381,154 @@ public class WorkerEntry extends AppCompatActivity {
             request.addProperty(info2);
 
             PropertyInfo info3 = new PropertyInfo();
-            info.setName("FIRSTNAME");
-            info.setValue(null);
-            info.setType(String.class);
+            info3.setName("FIRSTNAME");
+            info3.setValue(null);
+            info3.setType(String.class);
             request.addProperty(info3);
 
             PropertyInfo info4 = new PropertyInfo();
-            info1.setName("MIDDLENAME");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info4.setName("MIDDLENAME");
+            info4.setValue(null);
+            info4.setType(String.class);
             request.addProperty(info4);
 
             PropertyInfo info5 = new PropertyInfo();
-            info2.setName("LASTNAME");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info5.setName("LASTNAME");
+            info5.setValue(null);
+            info5.setType(String.class);
             request.addProperty(info5);
 
             PropertyInfo info6 = new PropertyInfo();
-            info.setName("DOB");
-            info.setValue(null);
-            info.setType(String.class);
+            info6.setName("DOB");
+            info6.setValue(null);
+            info6.setType(String.class);
             request.addProperty(info6);
 
             PropertyInfo info7 = new PropertyInfo();
-            info1.setName("LOCAL_ADDR");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info7.setName("LOCAL_ADDR");
+            info7.setValue(null);
+            info7.setType(String.class);
             request.addProperty(info7);
 
             PropertyInfo info8 = new PropertyInfo();
-            info2.setName("JOIN_DATE");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info8.setName("JOIN_DATE");
+            info8.setValue(null);
+            info8.setType(String.class);
             request.addProperty(info8);
 
             PropertyInfo info9 = new PropertyInfo();
-            info.setName("CONTACT_NO");
-            info.setValue(null);
-            info.setType(Integer.class);
+            info9.setName("CONTACT_NO");
+            info9.setValue(null);
+            info9.setType(Integer.class);
             request.addProperty(info9);
 
             PropertyInfo info10 = new PropertyInfo();
-            info1.setName("SKILL_TYPE");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info10.setName("SKILL_TYPE");
+            info10.setValue(null);
+            info10.setType(String.class);
             request.addProperty(info10);
 
             PropertyInfo info11 = new PropertyInfo();
-            info2.setName("GENDER");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info11.setName("GENDER");
+            info11.setValue(null);
+            info11.setType(String.class);
             request.addProperty(info11);
 
             PropertyInfo info12 = new PropertyInfo();
-            info.setName("QUALI");
-            info.setValue(null);
-            info.setType(String.class);
+            info12.setName("QUALI");
+            info12.setValue(null);
+            info12.setType(String.class);
             request.addProperty(info12);
 
             PropertyInfo info13 = new PropertyInfo();
-            info1.setName("WRKR_TYPE");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info13.setName("WRKR_TYPE");
+            info13.setValue(null);
+            info13.setType(String.class);
             request.addProperty(info13);
 
             PropertyInfo info14 = new PropertyInfo();
-            info2.setName("RELIGION");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info14.setName("RELIGION");
+            info14.setValue(null);
+            info14.setType(String.class);
             request.addProperty(info14);
 
             PropertyInfo info15 = new PropertyInfo();
-            info.setName("BLD_GP");
-            info.setValue(null);
-            info.setType(String.class);
+            info15.setName("BLD_GP");
+            info15.setValue(null);
+            info15.setType(String.class);
             request.addProperty(info15);
 
             PropertyInfo info16 = new PropertyInfo();
-            info1.setName("DOMICILE");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info16.setName("DOMICILE");
+            info16.setValue(null);
+            info16.setType(String.class);
             request.addProperty(info16);
 
             PropertyInfo info17 = new PropertyInfo();
-            info2.setName("HEIGHT");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info17.setName("HEIGHT");
+            info17.setValue(null);
+            info17.setType(String.class);
             request.addProperty(info17);
 
             PropertyInfo info18 = new PropertyInfo();
-            info.setName("ID_MARK");
-            info.setValue(null);
-            info.setType(String.class);
+            info18.setName("ID_MARK");
+            info18.setValue(null);
+            info18.setType(String.class);
             request.addProperty(info18);
 
             PropertyInfo info19 = new PropertyInfo();
-            info1.setName("POLICE_VER");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info19.setName("POLICE_VER");
+            info19.setValue(null);
+            info19.setType(String.class);
             request.addProperty(info19);
 
             PropertyInfo info20 = new PropertyInfo();
-            info.setName("SAFETY_TR_FROM");
-            info.setValue(null);
-            info.setType(Integer.class);
+            info20.setName("SAFETY_TR_FROM");
+            info20.setValue(null);
+            info20.setType(Integer.class);
             request.addProperty(info20);
 
             PropertyInfo info21 = new PropertyInfo();
-            info1.setName("SAFETY_TR_TO");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info21.setName("SAFETY_TR_TO");
+            info21.setValue(null);
+            info21.setType(String.class);
             request.addProperty(info21);
 
             PropertyInfo info22 = new PropertyInfo();
-            info2.setName("SAFETY_REMARK");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info22.setName("SAFETY_REMARK");
+            info22.setValue(null);
+            info22.setType(String.class);
             request.addProperty(info22);
 
             PropertyInfo info23 = new PropertyInfo();
-            info.setName("VH_FLAG");
-            info.setValue(null);
-            info.setType(String.class);
+            info23.setName("VH_FLAG");
+            info23.setValue(null);
+            info23.setType(String.class);
             request.addProperty(info23);
 
             PropertyInfo info24 = new PropertyInfo();
-            info1.setName("DRV_LIC_NO");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info24.setName("DRV_LIC_NO");
+            info24.setValue(null);
+            info24.setType(String.class);
             request.addProperty(info24);
 
             PropertyInfo info25 = new PropertyInfo();
-            info.setName("DRV_LIC_VAL");
-            info.setValue(null);
-            info.setType(Integer.class);
+            info25.setName("DRV_LIC_VAL");
+            info25.setValue(null);
+            info25.setType(Integer.class);
             request.addProperty(info25);
 
             PropertyInfo info26 = new PropertyInfo();
-            info1.setName("AADHAR");
-            info1.setValue(null);
-            info1.setType(String.class);
+            info26.setName("AADHAR");
+            info26.setValue(null);
+            info26.setType(String.class);
             request.addProperty(info26);
 
             PropertyInfo info27 = new PropertyInfo();
-            info2.setName("COUNTRYNAME");
-            info2.setValue(null);
-            info2.setType(String.class);
+            info27.setName("COUNTRYNAME");
+            info27.setValue(null);
+            info27.setType(String.class);
             request.addProperty(info27);
-
-
-
-
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
             envelope.dotNet = true;
